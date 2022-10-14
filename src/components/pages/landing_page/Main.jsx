@@ -1,5 +1,5 @@
 import React from 'react'
-import "../styles/main.css"
+import "./landing_page_styles/main.css"
 function Main() {
   return (
     <>

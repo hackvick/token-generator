@@ -1,5 +1,5 @@
 import React from 'react'
-import "../styles/footer.css"
+import "./landing_page_styles/footer.css"
 function Footer() {
   return (
     <>
@@ -17,7 +17,7 @@ function Footer() {
                             Terms of use
                         </button>
                         <a href="/#faq" className="btn footer-link nodeco py-0">Help</a>
-                        <a href="https://eattheblocks.com/" target="_blank" rel='noopnner noreferrer' className="btn footer-link nodeco py-0">Eat The Blocks</a>
+                        <a href="https://eattheblocks.com/" target="_blank" rel='noopnner noreferrer' className="btn footer-link nodeco py-0">Blocktech Brew</a>
                     </div>
                 </div>
             </div>

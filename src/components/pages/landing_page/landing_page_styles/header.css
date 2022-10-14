@@ -1,7 +1,7 @@
-.main-layot{
+.main-layout{
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
+        min-height: 0vh !important;
     }
     .main-layout.header-fixed .page-header {
         position: fixed;
