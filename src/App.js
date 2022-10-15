@@ -1,6 +1,8 @@
 import Header from './components/pages/landing_page/Header.jsx';
 import Main from './components/pages/landing_page/Main';
 import Footer from './components/pages/landing_page/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import EthHeader from './'
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import './App.css';
@@ -18,13 +20,14 @@ function App() {
     <Routes>
     {/* <div className="layout-container main-layout header-fixed"></div> */}
 
-      <Route path='/generator/' element={[<Header/>,<Main/>,<Footer/>]} />
+      <Route path='/' element={[<Header/>,<Main/>,<Footer/>]} />
 
       <Route path='/generator/ethereum'element={[<EthHeader/>,<EthMain/>,<Footer/>]} />
       <Route path='/generator/bsc'element={[<EthHeader/>,<BnbMain/>,<Footer/>]} />
       <Route path='/generator/polygon'element={[<EthHeader/>,<MaticMain/>,<Footer/>]} />
     </Routes>
   </Router>
+  <ToastContainer />
   {/* <Header />
   <Main />
   <Footer /> */}

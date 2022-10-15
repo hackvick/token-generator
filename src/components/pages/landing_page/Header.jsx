@@ -9,7 +9,7 @@ const Header = () => {
                 <div className="row align-items-center">
                     <div className="col-lg-12">
                         <nav className="navbar navbar-expand-lg">
-                            <a href="https://blocktechbrew.com/" className="navbar-brand">
+                            <a href="/" className="navbar-brand">
                                 {/* <span className="span-1"> */}
                                     {/* <span className="span-2">
                                         <img className='img-1' aria-hidden='true' src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27257%27%20height=%2725%27/%3e"

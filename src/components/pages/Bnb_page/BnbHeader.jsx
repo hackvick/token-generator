@@ -9,7 +9,7 @@ export const EthHeader = () => {
               <div className="col">
                 <nav className="navbar navbar-expand-lg">
                   <a href="/" className="navbar-brand">
-                    <img src="https://blocktechbrew.com/wp-content/uploads/2022/05/btb_logo.png" alt="Logo" className='logoImage' srcset="" />
+                    <img src="https://blocktechbrew.com/wp-content/uploads/2022/05/btb_logo.png" alt="Logo" className='logoImage' srcSet="" />
                     {/* <span className="span-1">
                       <span className="span-2">
                         <img alt aria-hidden="true" className='img-1'

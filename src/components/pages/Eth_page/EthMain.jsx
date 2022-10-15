@@ -1,8 +1,95 @@
 import React from "react";
+import { useState }  from "react";
 import './eth_styles/main.css'
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const EthMain = () => {
+
+  const [tokenType,setTokenType] = useState()
+  const [tokenName,setTokenName]=useState("")
+  const [tokenSymbol,setTokenSymbol] = useState("")
+  const [decimals,setDecimals] = useState(18)
+  const [supplyType,setSupplyType] = useState(1000)
+  const [initialSupply,setinitialSupply] = useState(1000)
+  const [maximumSupply,setMaximumSupply] = useState(1000)
+  const [conforms,setConforms] = useState(true)
+  const [verified,setVerified] = useState(false)
+  const [noCopyrightLink,setNoCopy] = useState(false)
+  const [mintable,setMintable] = useState(false)
+  const [burnable,setBurnable] = useState(true)
+  const [burnableDisable,setBurnableDisable] = useState(true)
+  const [pausable,setPausable] = useState(false)
+  const [recoverable,setRecoverable] = useState(false)
+  const [accessType,setAccessType] = useState("Owner")
+  const [network,setNetwork] = useState("Mainnet")
+  const [agreement,setAgreement] = useState()
+
+  const [error,setError]= useState(false)
+
+
+  const formHandler=(e)=>{
+    e.preventDefault()
+    
+    console.log(agreement,"da");
+    if(tokenName.length===0)
+    {
+      
+      toast.error("Please fill your token name")
+    }
+    if(tokenSymbol.length===0)
+    {
+      
+      toast.error("Please fill your token symbol")
+    }
+    if(maximumSupply===0){
+      toast.error("Please fill the max supply")
+    }
+    if(agreement===false){
+      toast.error("Please confirm that you have read and understood our terms of use")
+    }
+
+  }
+  const tokenTypeHandler=(e)=>{
+    console.log(e.target.value);
+    if(e.target.value==3)
+    console.log("aaja");
+    setBurnableDisable(false)
+    setTokenType(e.target.value)
+  }
+const tokenNameHandler=(e)=>{
+  setTokenName(e.target.value)
+}
+const tokenSymbolHandler=(e)=>{
+  setTokenSymbol(e.target.value)
+}
+const decimalsHandler=(e)=>{
+  setDecimals(e.target.value)
+}
+const supplyTypeHandler=(e)=>{
+  setSupplyType(e.target.value)
+}
+const initialSupplyHandler=(e)=>{
+  setinitialSupply(e.target.value)
+}
+const maximumSupplyHandler=(e)=>{
+  setMaximumSupply(e.target.value)
+}
+const accessTypeHandler=(e)=>{
+  setAccessType(e.target.value)
+}
+const networkHandler=(e)=>{
+  setNetwork(e.target.value)
+}
+const agreementHandler=(e)=>{
+
+  console.log(e.target.value,"value");
+  setAgreement(e.target.value)
+}
+
+  
   return (
     <>
+    
       <div className="page-content">
         <main >
           <div className="hero mb-3">
@@ -24,14 +111,14 @@ export const EthMain = () => {
             <div className="container">
               <div className="configurator-container">
                 <div className="configurator">
-                  <form action="">
+                  <form action="" onSubmit={formHandler}>
                     <div className="row">
                       <div className="col mt-3 mt-lg-0">
                         <div className="card">
                           <div className="card-header d-flex align-items-center">
                             <div className="mr-3" style={{zoom:1.5}}>
                               {/* <svg
-                                class="icon-arrow"
+                                className="icon-arrow"
                                 width="24px"
                                 height="24px"
                                 viewBox="0 0 24 24"
@@ -68,75 +155,78 @@ export const EthMain = () => {
                                 </g>
                               </svg> */}
                             </div>
-                            <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Informations</h4>
+                            <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Informations</h4>
                           </div>
-                          <div class="card-body">
-                            <div class="form-group">
-                              <label class="form-label">
+                          <div className="card-body">
+                            <div className="form-group">
+                              <label className="form-label">
                                 Token type
-                                <span class="val-required">*</span>
+                                <span className="val-required">*</span>
                               </label>
-                              <select class="form-select" name="tokenType">
+                              <select className="form-select"  name="tokenType" onChange={tokenTypeHandler}>
                                 <option value="1">Free</option>
                                 <option value="2">Basic</option>
                                 <option value="3">Custom</option>
                               </select>
-                              <span class="form-text text-muted">
+                              <span className="form-text text-muted">
                                 Select the base configuration of your token
                                 (Free and Basic have limited configurations)
                               </span>
                             </div>
-                            <div class="form-group">
-                              <label class="form-label">
-                                Token Name<span class="val-required">*</span>
+                            <div className="form-group">
+                              <label className="form-label">
+                                Token Name<span className="val-required">*</span>
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 placeholder="My new token"
                                 name="name"
+                                onChange={tokenNameHandler}
                               />
-                              <span class="form-text text-muted">
+                              <span className="form-text text-muted">
                                 The name of your token
                               </span>
                             </div>
-                            <div class="form-group">
-                              <label class="form-label">
-                                Token Symbol<span class="val-required">*</span>
+                            <div className="form-group">
+                              <label className="form-label">
+                                Token Symbol<span className="val-required">*</span>
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 placeholder="TKN"
-                                maxlength="8"
+                                maxLength="8"
                                 name="symbol"
+                                onChange={tokenSymbolHandler}
                               />
-                              <span class="form-text text-muted">
+                              <span className="form-text text-muted">
                                 You token's symbol (ie ETH)
                               </span>
                             </div>
-                            <div class="form-group">
-                              <label class="form-label">
-                                Decimals<span class="val-required">*</span>
+                            <div className="form-group">
+                              <label className="form-label">
+                                Decimals<span className="val-required">*</span>
                               </label>
                               <input
                                 type="number"
-                                class="form-control"
+                                className="form-control"
                                 placeholder="18"
-                                maxlength="2"
+                                maxLength="2"
                                 disabled=""
                                 name="decimals"
+                                onChange={decimalsHandler}
                               />
-                              <span class="form-text text-muted">
+                              <span className="form-text text-muted">
                                 The number of decimal of your token (default 18)
                               </span>
                             </div>
                           </div>
-                          <div class="card mt-3">
-                            <div class="card-header d-flex align-items-center">
-                              <div class="mr-3" style={{zoom:1.5}}>
+                          <div className="card mt-3">
+                            <div className="card-header d-flex align-items-center">
+                              <div className="mr-3" style={{zoom:1.5}}>
                                 {/* <svg
-                                  class="icon-arrow"
+                                  className="icon-arrow"
                                   width="24px"
                                   height="24px"
                                   viewBox="0 0 24 24"
@@ -173,55 +263,60 @@ export const EthMain = () => {
                                   </g>
                                 </svg> */}
                               </div>
-                              <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Supply</h4>
+                              <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Supply</h4>
                             </div>
-                            <div class="card-body">
-                              <div class="form-group">
-                                <label class="form-label">
-                                  Supply type<span class="val-required">*</span>
+                            <div className="card-body">
+                              <div className="form-group">
+                                <label className="form-label">
+                                  Supply type<span className="val-required">*</span>
                                 </label>
                                 <select
-                                  class="form-select"
+                                  className="form-select"
                                   name="supplyType"
                                   disabled=""
+                                  onChange={supplyTypeHandler}
                                 >
                                   <option value="1">Fixed</option>
                                   <option value="2">Capped</option>
                                   <option value="3">Unlimited</option>
                                 </select>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Fixed / Capped / Unlimited
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-label">
+                              <div className="form-group">
+                                <label className="form-label">
                                   Initial supply
-                                  <span class="val-required">*</span>
+                                  <span className="val-required">*</span>
                                 </label>
                                 <input
                                   type="number"
-                                  class="form-control"
+                                  className="form-control"
                                   placeholder="1000000"
                                   name="initialSupply"
+                                  onChange={initialSupplyHandler}
+                                  
                                 />
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   The number of coins minted during the creation
                                   of the contract
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-label">
+                              <div className="form-group">
+                                <label className="form-label">
                                   Maximum supply
-                                  <span class="val-required">*</span>
+                                  <span className="val-required">*</span>
                                 </label>
                                 <input
                                   type="number"
-                                  class="form-control"
+                                  className="form-control"
                                   placeholder="1000000"
+                                  value={initialSupply}
                                   name="maxSupply"
                                   disabled=""
+                                  onChange={maximumSupplyHandler}
                                 />
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   The maximum number of coins ever minted
                                 </span>
                               </div>
@@ -231,13 +326,13 @@ export const EthMain = () => {
                         
                         
                       </div>
-                      <div class="col mt-3 mt-lg-0">
-                          <div class="card">
+                      <div className="col mt-3 mt-lg-0">
+                          <div className="card">
                       
-                            <div class="card-header d-flex align-items-center">
-                              <div class="mr-3" style={{zoom:1.5}}>
+                            <div className="card-header d-flex align-items-center">
+                              <div className="mr-3" style={{zoom:1.5}}>
                                 {/* <svg
-                                  class="icon-arrow"
+                                  className="icon-arrow"
                                   width="24px"
                                   height="24px"
                                   viewBox="0 0 24 24"
@@ -274,149 +369,153 @@ export const EthMain = () => {
                                   </g>
                                 </svg> */}
                               </div>
-                              <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Options</h4>
+                              <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Options</h4>
                             </div>
-                            <div class="card-body">
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                            <div className="card-body">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
                                     name="cbConform"
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
-                                    disabled=""
-                                    checked=""
+                                    
+                                    disabled
+                                    checked
+                                    
                                   />
-                                  <span class="form-check-label">
+                                  <span className="form-check-label">
                                     Conforms to ERC20 protocol
                                   </span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Your token will const all the functionalities,
                                   and conforms to ERC20 protocol
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
-                                    disabled=""
+                                    disabled
+                                    checked
                                     name="verified"
                                   />
-                                  <span class="form-check-label">
+                                  <span className="form-check-label">
                                     Verified on Etherscan
                                   </span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   The source code of your contract is
                                   automatically published and verified
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     name="removeCopyright"
                                     disabled=""
                                   />
-                                  <span class="form-check-label">
+                                  <span className="form-check-label">
                                     No copyright link
                                   </span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   A link pointing to this page will be added in
                                   the description of your contract (Free and
                                   Basic contracts only)
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     name="isMintable"
                                     disabled=""
                                   />
-                                  <span class="form-check-label">
+                                  <span className="form-check-label">
                                     {" "}
                                     Mintable{" "}
                                   </span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Allow the creation of new tokens in the future
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     name="isBurnable"
-                                    disabled=""
+                                    disabled="false"
                                   />
-                                  <span class="form-check-label">Burnable</span>
+                                  <span className="form-check-label ">Burnable</span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Allow your tokens to be burned
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     name="isPausable"
                                     disabled=""
                                   />
-                                  <span class="form-check-label">Pausable</span>
+                                  <span className="form-check-label">Pausable</span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Allow your tokens to be paused
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     name="isRecoverable"
                                     disabled=""
                                   />
-                                  <span class="form-check-label">
+                                  <span className="form-check-label">
                                     Recoverable
                                   </span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Allow to recover any ERC20 tokens sent to your
                                   contract
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-label">
-                                  Access type<span class="val-required">*</span>
+                              <div className="form-group">
+                                <label className="form-label">
+                                  Access type<span className="val-required">*</span>
                                 </label>
                                 <select
-                                  class="form-select"
+                                  className="form-select"
                                   name="accessType"
                                   disabled=""
+                                  onChange={accessTypeHandler}
                                 >
                                   <option value="2">Owner</option>
                                   <option value="3">Roles</option>
                                 </select>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Who can administer your contract
                                 </span>
-                                <div class="form-info">
-                                  <div class="form-text text-muted">
+                                <div className="form-info">
+                                  <div className="form-text text-muted">
                                     <p>
-                                      <span class="strong">Owner:</span> Your
+                                      <span className="strong">Owner:</span> Your
                                       wallet address will be set as the owner of
                                       your token to perform administratives
                                       tasks (ie, mint new tokens).
                                     </p>
                                     <p>
-                                      <span class="strong">Roles:</span> All
+                                      <span className="strong">Roles:</span> All
                                       admin tasks (mint, burn, etc...) will be
                                       available to different users, based on
                                       their roles. By default, your wallet's
@@ -428,12 +527,12 @@ export const EthMain = () => {
                             </div>
                           </div>
                         </div>
-                      <div class="col mt-3 mt-xl-0">
-                        <div class="card">
-                          <div class="card-header d-flex align-items-center">
-                            <div class="mr-3" style={{zoom:1.5}}>
+                      <div className="col mt-3 mt-xl-0">
+                        <div className="card">
+                          <div className="card-header d-flex align-items-center">
+                            <div className="mr-3" style={{zoom:1.5}}>
                               {/* <svg
-                                class="icon-arrow"
+                                className="icon-arrow"
                                 width="24px"
                                 height="24px"
                                 viewBox="0 0 24 24"
@@ -470,27 +569,27 @@ export const EthMain = () => {
                                 </g>
                               </svg> */}
                             </div>
-                            <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Network</h4>
+                            <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Network</h4>
                           </div>
-                          <div class="card-body">
-                            <div class="form-group">
-                              <select class="form-select" name="chain">
+                          <div className="card-body">
+                            <div className="form-group">
+                              <select className="form-select" name="chain" onChange={networkHandler}>
                                 <option value="1">Mainnet</option>
                                 <option value="5">Görli</option>
                                 <option value="4">Rinkeby</option>
                               </select>
-                              <span class="form-text text-muted">
+                              <span className="form-text text-muted">
                                 Select the network on wich you want to deploy
                                 your token
                               </span>
                             </div>
                           </div>
                         </div>
-                        <div class="card mt-3">
-                          <div class="card-header d-flex align-items-center">
-                            <div class="mr-3" style={{zoom:1.5}}>
+                        <div className="card mt-3">
+                          <div className="card-header d-flex align-items-center">
+                            <div className="mr-3" style={{zoom:1.5}}>
                               {/* <svg
-                                class="icon-arrow"
+                                className="icon-arrow"
                                 width="24px"
                                 height="24px"
                                 viewBox="0 0 24 24"
@@ -527,19 +626,21 @@ export const EthMain = () => {
                                 </g>
                               </svg> */}
                             </div>
-                            <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Agreement</h4>
+                            <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Agreement</h4>
                           </div>
-                          <div class="card-body">
-                            <div class="form-group">
-                              <label class="form-check">
+                          <div className="card-body">
+                            <div className="form-group">
+                              <label className="form-check">
                                 <input
-                                  class="form-check-input"
+                                  className="form-check-input"
                                   type="checkbox"
                                   name="tosAgreement"
+                                  value= {agreement}
+                                  onChange={agreementHandler}
                                 />
-                                <span class="form-check-label">
+                                <span className="form-check-label">
                                   I have read, understood and agreed to the{" "}
-                                  <span class="text-underline">
+                                  <span className="text-underline">
                                     Terms of Use
                                   </span>
                                   .
@@ -548,11 +649,11 @@ export const EthMain = () => {
                             </div>
                           </div>
                         </div>
-                        <div class="card mt-3">
-                          <div class="card-header d-flex align-items-center">
-                            <div class="mr-3" style={{zoom:1.5}}>
+                        <div className="card mt-3">
+                          <div className="card-header d-flex align-items-center">
+                            <div className="mr-3" style={{zoom:1.5}}>
                               {/* <svg
-                                class="icon-arrow"
+                                className="icon-arrow"
                                 width="24px"
                                 height="24px"
                                 viewBox="0 0 24 24"
@@ -589,27 +690,27 @@ export const EthMain = () => {
                                 </g>
                               </svg> */}
                             </div>
-                            <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Transaction</h4>
+                            <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Transaction</h4>
                           </div>
-                          <div class="card-body">
+                          <div className="card-body">
 
 
                               <div className="transactionWrap">
                                 <div className="Ttext">
-                                 <p>Commission fee:   <i class="fa-solid fa-circle-info"></i></p>
+                                 <p>Commission fee:   <i className="fa-solid fa-circle-info"></i></p>
                                 </div>
                                 <div className="Tbtn">
-                                <span class="badge bg-success d-block p-2">
+                                <span className="badge bg-success d-block p-2">
                                   0.075 ETH
                                 </span>
                                 </div>
                               </div>
                               <div className="transactionWrap">
                                 <div className="Ttext">
-                                 <p>Gas fee:   <i class="fa-solid fa-circle-info"></i></p>
+                                 <p>Gas fee:   <i className="fa-solid fa-circle-info"></i></p>
                                 </div>
                                 <div className="Tbtn">
-                                <span class="badge bg-secondary d-block p-2">
+                                <span className="badge bg-secondary d-block p-2">
                                   Variable
                                 </span>
                                 </div>
@@ -620,10 +721,10 @@ export const EthMain = () => {
                             
                           </div>
                         </div>
-                        <div class="mt-3">
+                        <div className="mt-3">
                           <button
                             type="submit"
-                            class="btn-lg btn-success1 w-100"
+                            className="btn-lg btn-success1 w-100" onClick={formHandler}
                           >
                             Confirm
                           </button>
@@ -638,6 +739,9 @@ export const EthMain = () => {
           
         </main>
       </div>
+
+
+
     </>
   );
 };

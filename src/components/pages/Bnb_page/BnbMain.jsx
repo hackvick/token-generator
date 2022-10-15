@@ -31,7 +31,7 @@ export const BnbMain = () => {
                           <div className="card-header d-flex align-items-center">
                             <div className="mr-3" style={{zoom:1.5}}>
                               {/* <svg
-                                class="icon-arrow"
+                                className="icon-arrow"
                                 width="24px"
                                 height="24px"
                                 viewBox="0 0 24 24"
@@ -68,75 +68,75 @@ export const BnbMain = () => {
                                 </g>
                               </svg> */}
                             </div>
-                            <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Informations</h4>
+                            <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Informations</h4>
                           </div>
-                          <div class="card-body">
-                            <div class="form-group">
-                              <label class="form-label">
+                          <div className="card-body">
+                            <div className="form-group">
+                              <label className="form-label">
                                 Token type
-                                <span class="val-required">*</span>
+                                <span className="val-required">*</span>
                               </label>
-                              <select class="form-select" name="tokenType">
+                              <select className="form-select" name="tokenType">
                                 <option value="1">Free</option>
                                 <option value="2">Basic</option>
                                 <option value="3">Custom</option>
                               </select>
-                              <span class="form-text text-muted">
+                              <span className="form-text text-muted">
                                 Select the base configuration of your token
                                 (Free and Basic have limited configurations)
                               </span>
                             </div>
-                            <div class="form-group">
-                              <label class="form-label">
-                                Token Name<span class="val-required">*</span>
+                            <div className="form-group">
+                              <label className="form-label">
+                                Token Name<span className="val-required">*</span>
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 placeholder="My new token"
                                 name="name"
                               />
-                              <span class="form-text text-muted">
+                              <span className="form-text text-muted">
                                 The name of your token
                               </span>
                             </div>
-                            <div class="form-group">
-                              <label class="form-label">
-                                Token Symbol<span class="val-required">*</span>
+                            <div className="form-group">
+                              <label className="form-label">
+                                Token Symbol<span className="val-required">*</span>
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 placeholder="TKN"
-                                maxlength="8"
+                                maxLength="8"
                                 name="symbol"
                               />
-                              <span class="form-text text-muted">
+                              <span className="form-text text-muted">
                                 You token's symbol (ie BNB)
                               </span>
                             </div>
-                            <div class="form-group">
-                              <label class="form-label">
-                                Decimals<span class="val-required">*</span>
+                            <div className="form-group">
+                              <label className="form-label">
+                                Decimals<span className="val-required">*</span>
                               </label>
                               <input
                                 type="number"
-                                class="form-control"
+                                className="form-control"
                                 placeholder="18"
-                                maxlength="2"
+                                maxLength="2"
                                 disabled=""
                                 name="decimals"
                               />
-                              <span class="form-text text-muted">
+                              <span className="form-text text-muted">
                                 The number of decimal of your token (default 18)
                               </span>
                             </div>
                           </div>
-                          <div class="card mt-3">
-                            <div class="card-header d-flex align-items-center">
-                              <div class="mr-3" style={{zoom:1.5}}>
+                          <div className="card mt-3">
+                            <div className="card-header d-flex align-items-center">
+                              <div className="mr-3" style={{zoom:1.5}}>
                                 {/* <svg
-                                  class="icon-arrow"
+                                  className="icon-arrow"
                                   width="24px"
                                   height="24px"
                                   viewBox="0 0 24 24"
@@ -173,15 +173,15 @@ export const BnbMain = () => {
                                   </g>
                                 </svg> */}
                               </div>
-                              <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Supply</h4>
+                              <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Supply</h4>
                             </div>
-                            <div class="card-body">
-                              <div class="form-group">
-                                <label class="form-label">
-                                  Supply type<span class="val-required">*</span>
+                            <div className="card-body">
+                              <div className="form-group">
+                                <label className="form-label">
+                                  Supply type<span className="val-required">*</span>
                                 </label>
                                 <select
-                                  class="form-select"
+                                  className="form-select"
                                   name="supplyType"
                                   disabled=""
                                 >
@@ -189,39 +189,39 @@ export const BnbMain = () => {
                                   <option value="2">Capped</option>
                                   <option value="3">Unlimited</option>
                                 </select>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Fixed / Capped / Unlimited
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-label">
+                              <div className="form-group">
+                                <label className="form-label">
                                   Initial supply
-                                  <span class="val-required">*</span>
+                                  <span className="val-required">*</span>
                                 </label>
                                 <input
                                   type="number"
-                                  class="form-control"
+                                  className="form-control"
                                   placeholder="1000000"
                                   name="initialSupply"
                                 />
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   The number of coins minted during the creation
                                   of the contract
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-label">
+                              <div className="form-group">
+                                <label className="form-label">
                                   Maximum supply
-                                  <span class="val-required">*</span>
+                                  <span className="val-required">*</span>
                                 </label>
                                 <input
                                   type="number"
-                                  class="form-control"
+                                  className="form-control"
                                   placeholder="1000000"
                                   name="maxSupply"
                                   disabled=""
                                 />
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   The maximum number of coins ever minted
                                 </span>
                               </div>
@@ -231,13 +231,13 @@ export const BnbMain = () => {
                         
                         
                       </div>
-                      <div class="col mt-3 mt-lg-0">
-                          <div class="card">
+                      <div className="col mt-3 mt-lg-0">
+                          <div className="card">
                       
-                            <div class="card-header d-flex align-items-center">
-                              <div class="mr-3" style={{zoom:1.5}}>
+                            <div className="card-header d-flex align-items-center">
+                              <div className="mr-3" style={{zoom:1.5}}>
                                 {/* <svg
-                                  class="icon-arrow"
+                                  className="icon-arrow"
                                   width="24px"
                                   height="24px"
                                   viewBox="0 0 24 24"
@@ -274,149 +274,149 @@ export const BnbMain = () => {
                                   </g>
                                 </svg> */}
                               </div>
-                              <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Options</h4>
+                              <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Options</h4>
                             </div>
-                            <div class="card-body">
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                            <div className="card-body">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
                                     name="cbConform"
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     disabled=""
                                     checked=""
-                                  />
-                                  <span class="form-check-label">
+                                   />
+                                  <span className="form-check-label">
                                     Confirms to BEP20 protocol
                                   </span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Your token will const all the functionalities,
                                   and confirms to BEP20 protocol
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     disabled=""
                                     name="verified"
                                   />
-                                  <span class="form-check-label">
+                                  <span className="form-check-label">
                                     Verified on BSCscan
                                   </span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   The source code of your contract is
                                   automatically published and verified
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     name="removeCopyright"
                                     disabled=""
                                   />
-                                  <span class="form-check-label">
+                                  <span className="form-check-label">
                                     No copyright link
                                   </span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   A link pointing to this page will be added in
                                   the description of your contract (Free and
                                   Basic contracts only)
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     name="isMintable"
                                     disabled=""
                                   />
-                                  <span class="form-check-label">
+                                  <span className="form-check-label">
                                     {" "}
                                     Mintable{" "}
                                   </span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Allow the creation of new tokens in the future
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     name="isBurnable"
                                     disabled=""
                                   />
-                                  <span class="form-check-label">Burnable</span>
+                                  <span className="form-check-label">Burnable</span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Allow your tokens to be burned
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     name="isPausable"
                                     disabled=""
                                   />
-                                  <span class="form-check-label">Pausable</span>
+                                  <span className="form-check-label">Pausable</span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Allow your tokens to be paused
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-check form-switch">
+                              <div className="form-group">
+                                <label className="form-check form-switch">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     name="isRecoverable"
                                     disabled=""
                                   />
-                                  <span class="form-check-label">
+                                  <span className="form-check-label">
                                     Recoverable
                                   </span>
                                 </label>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Allow to recover any BEP20 tokens sent to your
                                   contract
                                 </span>
                               </div>
-                              <div class="form-group">
-                                <label class="form-label">
-                                  Access type<span class="val-required">*</span>
+                              <div className="form-group">
+                                <label className="form-label">
+                                  Access type<span className="val-required">*</span>
                                 </label>
                                 <select
-                                  class="form-select"
+                                  className="form-select"
                                   name="accessType"
                                   disabled=""
                                 >
                                   <option value="2">Owner</option>
                                   <option value="3">Roles</option>
                                 </select>
-                                <span class="form-text text-muted">
+                                <span className="form-text text-muted">
                                   Who can administer your contract
                                 </span>
-                                <div class="form-info">
-                                  <div class="form-text text-muted">
+                                <div className="form-info">
+                                  <div className="form-text text-muted">
                                     <p>
-                                      <span class="strong">Owner:</span> Your
+                                      <span className="strong">Owner:</span> Your
                                       wallet address will be set as the owner of
                                       your token to perform administratives
                                       tasks (ie, mint new tokens).
                                     </p>
                                     <p>
-                                      <span class="strong">Roles:</span> All
+                                      <span className="strong">Roles:</span> All
                                       admin tasks (mint, burn, etc...) will be
                                       available to different users, based on
                                       their roles. By default, your wallet's
@@ -428,12 +428,12 @@ export const BnbMain = () => {
                             </div>
                           </div>
                         </div>
-                      <div class="col mt-3 mt-xl-0">
-                        <div class="card">
-                          <div class="card-header d-flex align-items-center">
-                            <div class="mr-3" style={{zoom:1.5}}>
+                      <div className="col mt-3 mt-xl-0">
+                        <div className="card">
+                          <div className="card-header d-flex align-items-center">
+                            <div className="mr-3" style={{zoom:1.5}}>
                               {/* <svg
-                                class="icon-arrow"
+                                className="icon-arrow"
                                 width="24px"
                                 height="24px"
                                 viewBox="0 0 24 24"
@@ -470,27 +470,27 @@ export const BnbMain = () => {
                                 </g>
                               </svg> */}
                             </div>
-                            <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Network</h4>
+                            <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Network</h4>
                           </div>
-                          <div class="card-body">
-                            <div class="form-group">
-                              <select class="form-select" name="chain">
+                          <div className="card-body">
+                            <div className="form-group">
+                              <select className="form-select" name="chain">
                                 <option value="1">Mainnet</option>
                                 <option value="5">Görli</option>
                                 <option value="4">Rinkeby</option>
                               </select>
-                              <span class="form-text text-muted">
+                              <span className="form-text text-muted">
                                 Select the network on wich you want to deploy
                                 your token
                               </span>
                             </div>
                           </div>
                         </div>
-                        <div class="card mt-3">
-                          <div class="card-header d-flex align-items-center">
-                            <div class="mr-3" style={{zoom:1.5}}>
+                        <div className="card mt-3">
+                          <div className="card-header d-flex align-items-center">
+                            <div className="mr-3" style={{zoom:1.5}}>
                               {/* <svg
-                                class="icon-arrow"
+                                className="icon-arrow"
                                 width="24px"
                                 height="24px"
                                 viewBox="0 0 24 24"
@@ -527,19 +527,19 @@ export const BnbMain = () => {
                                 </g>
                               </svg> */}
                             </div>
-                            <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Agreement</h4>
+                            <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Agreement</h4>
                           </div>
-                          <div class="card-body">
-                            <div class="form-group">
-                              <label class="form-check">
+                          <div className="card-body">
+                            <div className="form-group">
+                              <label className="form-check">
                                 <input
-                                  class="form-check-input"
+                                  className="form-check-input"
                                   type="checkbox"
                                   name="tosAgreement"
                                 />
-                                <span class="form-check-label">
+                                <span className="form-check-label">
                                   I have read, understood and agreed to the{" "}
-                                  <span class="text-underline">
+                                  <span className="text-underline">
                                     Terms of Use
                                   </span>
                                   .
@@ -548,11 +548,11 @@ export const BnbMain = () => {
                             </div>
                           </div>
                         </div>
-                        <div class="card mt-3">
-                          <div class="card-header d-flex align-items-center">
-                            <div class="mr-3" style={{zoom:1.5}}>
+                        <div className="card mt-3">
+                          <div className="card-header d-flex align-items-center">
+                            <div className="mr-3" style={{zoom:1.5}}>
                               {/* <svg
-                                class="icon-arrow"
+                                className="icon-arrow"
                                 width="24px"
                                 height="24px"
                                 viewBox="0 0 24 24"
@@ -589,27 +589,27 @@ export const BnbMain = () => {
                                 </g>
                               </svg> */}
                             </div>
-                            <h4 class="m-0"><i class="fa-solid fa-arrow-right me-3"></i>Transaction</h4>
+                            <h4 className="m-0"><i className="fa-solid fa-arrow-right me-3"></i>Transaction</h4>
                           </div>
-                          <div class="card-body">
+                          <div className="card-body">
 
 
                               <div className="transactionWrap">
                                 <div className="Ttext">
-                                 <p>Commission fee:   <i class="fa-solid fa-circle-info"></i></p>
+                                 <p>Commission fee:   <i className="fa-solid fa-circle-info"></i></p>
                                 </div>
                                 <div className="Tbtn">
-                                <span class="badge bg-success d-block p-2">
+                                <span className="badge bg-success d-block p-2">
                                   0.5 BNB
                                 </span>
                                 </div>
                               </div>
                               <div className="transactionWrap">
                                 <div className="Ttext">
-                                 <p>Gas fee:   <i class="fa-solid fa-circle-info"></i></p>
+                                 <p>Gas fee:   <i className="fa-solid fa-circle-info"></i></p>
                                 </div>
                                 <div className="Tbtn">
-                                <span class="badge bg-secondary d-block p-2">
+                                <span className="badge bg-secondary d-block p-2">
                                   Variable
                                 </span>
                                 </div>
@@ -620,10 +620,10 @@ export const BnbMain = () => {
                             
                           </div>
                         </div>
-                        <div class="mt-3">
+                        <div className="mt-3">
                           <button
                             type="submit"
-                            class="btn-lg btn-success1 w-100"
+                            className="btn-lg btn-success1 w-100"
                           >
                             Confirm
                           </button>

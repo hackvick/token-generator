@@ -1,8 +1,11 @@
 import React from 'react'
 import "./landing_page_styles/main.css"
 function Main() {
-  return (
+    
+    return (
+    
     <>
+    
     <div className="page-content">
         <main>
             <div className="hero mb-3">
