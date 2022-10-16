@@ -90,14 +90,16 @@ export const EthMain = () => {
       setEthFormData((prev) => ({
         ...prev,
         noCopyrightLink: false,
-        commissionFee: null
+        commissionFee: null,
+        accessType: 'owner'
       }))
     } else if (tokenType === "free") {
       setFieldsDisabled(freeDisabled);
       setEthFormData((prev) => ({
         ...prev,
         noCopyrightLink: false,
-        commissionFee: 0.075
+        commissionFee: 0.075,
+        accessType: 'owner'
       }))
     } else if (tokenType === "custom") {
       setFieldsDisabled(customDisabled);
