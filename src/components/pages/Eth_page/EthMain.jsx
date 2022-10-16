@@ -15,7 +15,7 @@ export const EthMain = () => {
     tokenName: "",
     tokenSymbol: "",
     decimals: 18,
-    supplyType: "",
+    supplyType: "fixed",
     initialSupply: 1000,
     maximumSupply: 1000,
     conforms: true,
@@ -28,7 +28,7 @@ export const EthMain = () => {
     accessType: "owner",
     network: "mainnet",
     agreement: false,
-    commissionFee: 0.075
+    commissionFee: 0.075,
   });
 
   // By default token type is basic selected
@@ -68,7 +68,6 @@ export const EthMain = () => {
     commissionFee,
   } = ethFormData;
 
-
   const {
     f_decimals,
     f_supplyType,
@@ -91,29 +90,48 @@ export const EthMain = () => {
         ...prev,
         noCopyrightLink: false,
         commissionFee: null,
-        accessType: 'owner',
-        supplyType: 'fixed',
-      }))
+        accessType: "owner",
+        supplyType: "fixed",
+        mintable: "false",
+        burnable: false,
+        pausable: false,
+        recoverable: false
+      }));
     } else if (tokenType === "free") {
       setFieldsDisabled(freeDisabled);
       setEthFormData((prev) => ({
         ...prev,
         noCopyrightLink: false,
         commissionFee: 0.075,
-        accessType: 'owner',
-        supplyType: 'fixed'
-      }))
+        accessType: "owner",
+        supplyType: "fixed",
+        mintable: false,
+      }));
     } else if (tokenType === "custom") {
       setFieldsDisabled(customDisabled);
       setEthFormData((prev) => ({
         ...prev,
         noCopyrightLink: true,
-        commissionFee: 0.15
-      }))
+        commissionFee: 0.15,
+      }));
+      if (supplyType === "capped" || supplyType === "unlimited") {
+        setEthFormData((prev) => ({
+          ...prev,
+          noCopyrightLink: true,
+          commissionFee: 0.15,
+          mintable: true,
+        }));
+        setFieldsDisabled({
+          ...customDisabled,
+          f_mintable: false,
+          f_burnable: false,
+          f_pausable: false,
+          f_recoverable: false,
+        });
+      }
     }
-  }, [tokenType]);
+  }, [tokenType, supplyType]);
 
-  
   const ethMainFormHandler = (e) => {
     let boolean = null;
     if (e.target.type === "checkbox") {
@@ -491,7 +509,7 @@ export const EthMain = () => {
                                 <input
                                   className="form-check-input"
                                   type="checkbox"
-                                  defaultChecked={mintable}
+                                  checked={mintable}
                                   disabled={f_mintable}
                                   name="mintable"
                                   onChange={ethMainFormHandler}
@@ -547,7 +565,7 @@ export const EthMain = () => {
                                   className="form-check-input"
                                   type="checkbox"
                                   name="recoverable"
-                                  defaultChecked={recoverable}
+                                  checked={recoverable}
                                   disabled={f_recoverable}
                                   onChange={ethMainFormHandler}
                                 />
@@ -789,7 +807,9 @@ export const EthMain = () => {
                               </div>
                               <div className="Tbtn">
                                 <span className="badge bg-success d-block p-2">
-                                  {commissionFee ? `${commissionFee} ETH` : 'FREE'}
+                                  {commissionFee
+                                    ? `${commissionFee} ETH`
+                                    : "FREE"}
                                 </span>
                               </div>
                             </div>
