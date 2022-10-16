@@ -92,7 +92,7 @@ export const EthMain = () => {
         commissionFee: null,
         accessType: "owner",
         supplyType: "fixed",
-        mintable: "false",
+        mintable: false,
         burnable: false,
         pausable: false,
         recoverable: false
@@ -106,6 +106,9 @@ export const EthMain = () => {
         accessType: "owner",
         supplyType: "fixed",
         mintable: false,
+        burnable: false,
+        pausable: false,
+        recoverable: false
       }));
     } else if (tokenType === "custom") {
       setFieldsDisabled(customDisabled);
@@ -128,6 +131,11 @@ export const EthMain = () => {
           f_pausable: false,
           f_recoverable: false,
         });
+      } else if(supplyType === "fixed") {
+        setEthFormData((prev) => ({
+          ...prev,
+          mintable: false
+        }))
       }
     }
   }, [tokenType, supplyType]);
