@@ -31,6 +31,15 @@ export const EthMain = () => {
     commissionFee: 0.075,
   });
 
+  const [err, setErr] = useState({
+    tokenNameErr: "",
+    tokenSymbolErr: "",
+    agreementErr: "",
+    // tokenNameErr: 'Please fill your token name',
+    // tokenSymbolErr: 'Please fill your token symbol',
+    // agreementErr: 'Please confirm that you have read and understood our terms of use'
+  });
+
   // By default token type is basic selected
   const [fieldsDisabled, setFieldsDisabled] = useState({
     f_decimals: true,
@@ -95,7 +104,7 @@ export const EthMain = () => {
         mintable: false,
         burnable: false,
         pausable: false,
-        recoverable: false
+        recoverable: false,
       }));
     } else if (tokenType === "free") {
       setFieldsDisabled(freeDisabled);
@@ -108,7 +117,7 @@ export const EthMain = () => {
         mintable: false,
         burnable: false,
         pausable: false,
-        recoverable: false
+        recoverable: false,
       }));
     } else if (tokenType === "custom") {
       setFieldsDisabled(customDisabled);
@@ -131,11 +140,11 @@ export const EthMain = () => {
           f_pausable: false,
           f_recoverable: false,
         });
-      } else if(supplyType === "fixed") {
+      } else if (supplyType === "fixed") {
         setEthFormData((prev) => ({
           ...prev,
-          mintable: false
-        }))
+          mintable: false,
+        }));
       }
     }
   }, [tokenType, supplyType]);
@@ -149,6 +158,59 @@ export const EthMain = () => {
       ...prev,
       [e.target.name]: boolean ?? e.target.value,
     }));
+  };
+
+  useEffect(() => {
+    if (agreement !== false) {
+      setErr((prev) => ({
+        ...prev,
+        agreementErr: "",
+      }));
+    }
+
+    if (tokenName !== "") {
+      setErr((prev) => ({
+        ...prev,
+        tokenNameErr: "",
+      }));
+    }
+
+    if (tokenSymbol !== "") {
+      setErr((prev) => ({
+        ...prev,
+        tokenSymbolErr: "",
+      }));
+    }
+  }, [agreement, tokenName, tokenSymbol]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (ethFormData.tokenName === "") {
+      setErr((prev) => ({
+        ...prev,
+        tokenNameErr: "Please fill your token name",
+      }));
+    }
+
+    if (ethFormData.tokenSymbol === "") {
+      setErr((prev) => ({
+        ...prev,
+        tokenSymbolErr: "Please fill your token symbol",
+      }));
+    }
+
+    if (ethFormData.agreement === false) {
+      setErr((prev) => ({
+        ...prev,
+        agreementErr:
+          "Please confirm that you have read and understood our terms of use",
+      }));
+    }
+
+    if (!err.tokenNameErr && !err.tokenSymbolErr && err.agreementErr) {
+      // do what u want to do with data
+      console.log(ethFormData, ">>>>>>>>>>>>>>>>");
+    }
   };
 
   return (
@@ -174,7 +236,7 @@ export const EthMain = () => {
             <div className="container">
               <div className="configurator-container">
                 <div className="configurator">
-                  <form action="">
+                  <form onSubmit={handleSubmit}>
                     <div className="row">
                       <div className="col mt-3 mt-lg-0">
                         <div className="card">
@@ -260,6 +322,7 @@ export const EthMain = () => {
                               <span className="form-text text-muted">
                                 The name of your token
                               </span>
+                              <span className="text-danger">{err.tokenNameErr}</span>
                             </div>
                             <div className="form-group">
                               <label className="form-label">
@@ -278,6 +341,7 @@ export const EthMain = () => {
                               <span className="form-text text-muted">
                                 You token's symbol (ie ETH)
                               </span>
+                              <span className="text-danger">{err.tokenSymbolErr}</span>
                             </div>
                             <div className="form-group">
                               <label className="form-label">
@@ -755,6 +819,7 @@ export const EthMain = () => {
                                   </span>
                                   .
                                 </span>
+                                <span className="text-danger">{err.agreementErr}</span>
                               </label>
                             </div>
                           </div>
