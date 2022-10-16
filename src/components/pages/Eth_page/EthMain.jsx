@@ -98,7 +98,7 @@ export const EthMain = () => {
       setEthFormData((prev) => ({
         ...prev,
         noCopyrightLink: false,
-        commissionFee: null,
+        // commissionFee: null,
         accessType: "owner",
         supplyType: "fixed",
         mintable: false,
@@ -106,12 +106,30 @@ export const EthMain = () => {
         pausable: false,
         recoverable: false,
       }));
+      if (network === "rinkeby") {
+        setEthFormData((prev) => ({
+          ...prev,
+          commissionFee: null,
+        }));
+      }
+      if (network === "mainnet") {
+        setEthFormData((prev) => ({
+          ...prev,
+          commissionFee: 0.075,
+        }));
+      }
+      if (network === "gorli") {
+        setEthFormData((prev) => ({
+          ...prev,
+          commissionFee: null,
+        }));
+      }
     } else if (tokenType === "free") {
       setFieldsDisabled(freeDisabled);
       setEthFormData((prev) => ({
         ...prev,
         noCopyrightLink: false,
-        commissionFee: 0.075,
+        commissionFee: null,
         accessType: "owner",
         supplyType: "fixed",
         mintable: false,
@@ -146,8 +164,27 @@ export const EthMain = () => {
           mintable: false,
         }));
       }
+
+      if (network === "rinkeby") {
+        setEthFormData((prev) => ({
+          ...prev,
+          commissionFee: null,
+        }));
+      }
+      if (network === "mainnet") {
+        setEthFormData((prev) => ({
+          ...prev,
+          commissionFee: 0.015,
+        }));
+      }
+      if (network === "gorli") {
+        setEthFormData((prev) => ({
+          ...prev,
+          commissionFee: null,
+        }));
+      }
     }
-  }, [tokenType, supplyType]);
+  }, [tokenType, supplyType, network]);
 
   const ethMainFormHandler = (e) => {
     let boolean = null;
@@ -322,7 +359,9 @@ export const EthMain = () => {
                               <span className="form-text text-muted">
                                 The name of your token
                               </span>
-                              <span className="text-danger">{err.tokenNameErr}</span>
+                              <span className="text-danger">
+                                {err.tokenNameErr}
+                              </span>
                             </div>
                             <div className="form-group">
                               <label className="form-label">
@@ -341,7 +380,9 @@ export const EthMain = () => {
                               <span className="form-text text-muted">
                                 You token's symbol (ie ETH)
                               </span>
-                              <span className="text-danger">{err.tokenSymbolErr}</span>
+                              <span className="text-danger">
+                                {err.tokenSymbolErr}
+                              </span>
                             </div>
                             <div className="form-group">
                               <label className="form-label">
@@ -744,9 +785,9 @@ export const EthMain = () => {
                                 value={network}
                                 onChange={ethMainFormHandler}
                               >
-                                <option value="1">Mainnet</option>
-                                <option value="5">Görli</option>
-                                <option value="4">Rinkeby</option>
+                                <option value="mainnet">Mainnet</option>
+                                <option value="gorli">Görli</option>
+                                <option value="rinkeby">Rinkeby</option>
                               </select>
                               <span className="form-text text-muted">
                                 Select the network on wich you want to deploy
@@ -819,7 +860,9 @@ export const EthMain = () => {
                                   </span>
                                   .
                                 </span>
-                                <span className="text-danger">{err.agreementErr}</span>
+                                <span className="text-danger">
+                                  {err.agreementErr}
+                                </span>
                               </label>
                             </div>
                           </div>
