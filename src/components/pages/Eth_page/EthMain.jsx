@@ -91,7 +91,8 @@ export const EthMain = () => {
         ...prev,
         noCopyrightLink: false,
         commissionFee: null,
-        accessType: 'owner'
+        accessType: 'owner',
+        supplyType: 'fixed',
       }))
     } else if (tokenType === "free") {
       setFieldsDisabled(freeDisabled);
@@ -99,7 +100,8 @@ export const EthMain = () => {
         ...prev,
         noCopyrightLink: false,
         commissionFee: 0.075,
-        accessType: 'owner'
+        accessType: 'owner',
+        supplyType: 'fixed'
       }))
     } else if (tokenType === "custom") {
       setFieldsDisabled(customDisabled);
