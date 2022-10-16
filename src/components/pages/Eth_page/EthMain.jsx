@@ -717,6 +717,7 @@ export const EthMain = () => {
                                   value={agreement}
                                   onChange={ethMainFormHandler}
                                 />
+
                                 <span className="form-check-label">
                                   I have read, understood and agreed to the{" "}
                                   <span className="text-underline">
