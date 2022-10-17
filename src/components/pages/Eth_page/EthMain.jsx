@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./eth_styles/main.css";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link, Navigate,useNavigate} from "react-router-dom";
 
 import {
   freeDisabled,
@@ -31,6 +31,10 @@ export const EthMain = () => {
     commissionFee: 0.075,
   });
 
+// 
+const [show,setShow] = useState(false)
+// 
+const navigate = useNavigate()
   const [err, setErr] = useState({
     tokenNameErr: "",
     tokenSymbolErr: "",
@@ -46,6 +50,7 @@ export const EthMain = () => {
     f_supplyType: true,
     f_initialSupply: false,
     f_maximumSupply: true,
+    d_displayMaximum: "block",
     f_conforms: true,
     f_verified: true,
     f_noCopyrightLink: true,
@@ -95,8 +100,11 @@ export const EthMain = () => {
   useEffect(() => {
     if (tokenType === "basic") {
       setFieldsDisabled(basicDisabled);
+      
       setEthFormData((prev) => ({
+        
         ...prev,
+        
         noCopyrightLink: false,
         // commissionFee: null,
         accessType: "owner",
@@ -144,11 +152,19 @@ export const EthMain = () => {
         noCopyrightLink: true,
         commissionFee: 0.15,
       }));
+// added
+      if(supplyType==="unlimited"){
+        setShow(true)
+      }
+      if(supplyType==="fixed" || supplyType==="capped"){
+        setShow(false)
+      }
+
       if (supplyType === "capped" || supplyType === "unlimited") {
         setEthFormData((prev) => ({
           ...prev,
           noCopyrightLink: true,
-          commissionFee: 0.15,
+          commissionFee: 0.225,
           mintable: true,
         }));
         setFieldsDisabled({
@@ -162,6 +178,7 @@ export const EthMain = () => {
         setEthFormData((prev) => ({
           ...prev,
           mintable: false,
+          commissionFee: 0.15,
         }));
       }
 
@@ -174,7 +191,7 @@ export const EthMain = () => {
       if (network === "mainnet") {
         setEthFormData((prev) => ({
           ...prev,
-          commissionFee: 0.015,
+          // commissionFee: 0.15,
         }));
       }
       if (network === "gorli") {
@@ -246,6 +263,8 @@ export const EthMain = () => {
 
     if (!err.tokenNameErr && !err.tokenSymbolErr && err.agreementErr) {
       // do what u want to do with data
+      navigate('/generator/final')
+      // < Navigate to= "/generator/final" />
       console.log(ethFormData, ">>>>>>>>>>>>>>>>");
     }
   };
@@ -279,43 +298,6 @@ export const EthMain = () => {
                         <div className="card">
                           <div className="card-header d-flex align-items-center">
                             <div className="mr-3" style={{ zoom: 1.5 }}>
-                              {/* <svg
-                                className="icon-arrow"
-                                width="24px"
-                                height="24px"
-                                viewBox="0 0 24 24"
-                                version="1.1"
-                                xmlns="http://www.w3.org/2000/svg"
-                                xlink:href="http://www.w3.org/1999/xlink"
-                              >
-                                <g
-                                  stroke="none"
-                                  stroke-width="1"
-                                  fill="none"
-                                  fill-rule="evenodd"
-                                >
-                                  <polygon
-                                    points="0 0 24 0 24 24 0 24"
-                                    opacity="0"
-                                  ></polygon>
-                                  <rect
-                                    opacity="0.3"
-                                    transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000) "
-                                    x="7.5"
-                                    y="7.5"
-                                    width="2"
-                                    height="9"
-                                    rx="1"
-                                    fill="#383838"
-                                  ></rect>
-                                  <path
-                                    d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
-                                    fill="#383838"
-                                    fill-rule="nonzero"
-                                    transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "
-                                  ></path>
-                                </g>
-                              </svg> */}
                             </div>
                             <h4 className="m-0">
                               <i className="fa-solid fa-arrow-right me-3"></i>
@@ -406,43 +388,6 @@ export const EthMain = () => {
                           <div className="card mt-3">
                             <div className="card-header d-flex align-items-center">
                               <div className="mr-3" style={{ zoom: 1.5 }}>
-                                {/* <svg
-                                  className="icon-arrow"
-                                  width="24px"
-                                  height="24px"
-                                  viewBox="0 0 24 24"
-                                  version="1.1"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  xlink:href="http://www.w3.org/1999/xlink"
-                                >
-                                  <g
-                                    stroke="none"
-                                    stroke-width="1"
-                                    fill="none"
-                                    fill-rule="evenodd"
-                                  >
-                                    <polygon
-                                      points="0 0 24 0 24 24 0 24"
-                                      opacity="0"
-                                    ></polygon>
-                                    <rect
-                                      opacity="0.3"
-                                      transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000) "
-                                      x="7.5"
-                                      y="7.5"
-                                      width="2"
-                                      height="9"
-                                      rx="1"
-                                      fill="#383838"
-                                    ></rect>
-                                    <path
-                                      d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
-                                      fill="#383838"
-                                      fill-rule="nonzero"
-                                      transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "
-                                    ></path>
-                                  </g>
-                                </svg> */}
                               </div>
                               <h4 className="m-0">
                                 <i className="fa-solid fa-arrow-right me-3"></i>
@@ -464,7 +409,7 @@ export const EthMain = () => {
                                 >
                                   <option value="fixed">Fixed</option>
                                   <option value="capped">Capped</option>
-                                  <option value="unlimited">Unlimited</option>
+                                  <option value="unlimited" >Unlimited</option>
                                 </select>
                                 <span className="form-text text-muted">
                                   Fixed / Capped / Unlimited
@@ -489,7 +434,10 @@ export const EthMain = () => {
                                   of the contract
                                 </span>
                               </div>
-                              <div className="form-group">
+                              <div className="form-group " 
+                              style={{display: !show ? "block" : "none"}}
+                              // style={{display: {d_displayMaximum}}} 
+                              >
                                 <label className="form-label">
                                   Maximum supply
                                   <span className="val-required">*</span>
@@ -515,43 +463,6 @@ export const EthMain = () => {
                         <div className="card">
                           <div className="card-header d-flex align-items-center">
                             <div className="mr-3" style={{ zoom: 1.5 }}>
-                              {/* <svg
-                                  className="icon-arrow"
-                                  width="24px"
-                                  height="24px"
-                                  viewBox="0 0 24 24"
-                                  version="1.1"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  xlink:href="http://www.w3.org/1999/xlink"
-                                >
-                                  <g
-                                    stroke="none"
-                                    stroke-width="1"
-                                    fill="none"
-                                    fill-rule="evenodd"
-                                  >
-                                    <polygon
-                                      points="0 0 24 0 24 24 0 24"
-                                      opacity="0"
-                                    ></polygon>
-                                    <rect
-                                      opacity="0.3"
-                                      transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000) "
-                                      x="7.5"
-                                      y="7.5"
-                                      width="2"
-                                      height="9"
-                                      rx="1"
-                                      fill="#383838"
-                                    ></rect>
-                                    <path
-                                      d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
-                                      fill="#383838"
-                                      fill-rule="nonzero"
-                                      transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "
-                                    ></path>
-                                  </g>
-                                </svg> */}
                             </div>
                             <h4 className="m-0">
                               <i className="fa-solid fa-arrow-right me-3"></i>
@@ -734,43 +645,6 @@ export const EthMain = () => {
                         <div className="card">
                           <div className="card-header d-flex align-items-center">
                             <div className="mr-3" style={{ zoom: 1.5 }}>
-                              {/* <svg
-                                className="icon-arrow"
-                                width="24px"
-                                height="24px"
-                                viewBox="0 0 24 24"
-                                version="1.1"
-                                xmlns="http://www.w3.org/2000/svg"
-                                xlink:href="http://www.w3.org/1999/xlink"
-                              >
-                                <g
-                                  stroke="none"
-                                  stroke-width="1"
-                                  fill="none"
-                                  fill-rule="evenodd"
-                                >
-                                  <polygon
-                                    points="0 0 24 0 24 24 0 24"
-                                    opacity="0"
-                                  ></polygon>
-                                  <rect
-                                    opacity="0.3"
-                                    transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000) "
-                                    x="7.5"
-                                    y="7.5"
-                                    width="2"
-                                    height="9"
-                                    rx="1"
-                                    fill="#383838"
-                                  ></rect>
-                                  <path
-                                    d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
-                                    fill="#383838"
-                                    fill-rule="nonzero"
-                                    transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "
-                                  ></path>
-                                </g>
-                              </svg> */}
                             </div>
                             <h4 className="m-0">
                               <i className="fa-solid fa-arrow-right me-3"></i>
@@ -799,43 +673,6 @@ export const EthMain = () => {
                         <div className="card mt-3">
                           <div className="card-header d-flex align-items-center">
                             <div className="mr-3" style={{ zoom: 1.5 }}>
-                              {/* <svg
-                                className="icon-arrow"
-                                width="24px"
-                                height="24px"
-                                viewBox="0 0 24 24"
-                                version="1.1"
-                                xmlns="http://www.w3.org/2000/svg"
-                                xlink:href="http://www.w3.org/1999/xlink"
-                              >
-                                <g
-                                  stroke="none"
-                                  stroke-width="1"
-                                  fill="none"
-                                  fill-rule="evenodd"
-                                >
-                                  <polygon
-                                    points="0 0 24 0 24 24 0 24"
-                                    opacity="0"
-                                  ></polygon>
-                                  <rect
-                                    opacity="0.3"
-                                    transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000) "
-                                    x="7.5"
-                                    y="7.5"
-                                    width="2"
-                                    height="9"
-                                    rx="1"
-                                    fill="#383838"
-                                  ></rect>
-                                  <path
-                                    d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
-                                    fill="#383838"
-                                    fill-rule="nonzero"
-                                    transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "
-                                  ></path>
-                                </g>
-                              </svg> */}
                             </div>
                             <h4 className="m-0">
                               <i className="fa-solid fa-arrow-right me-3"></i>
@@ -870,43 +707,6 @@ export const EthMain = () => {
                         <div className="card mt-3">
                           <div className="card-header d-flex align-items-center">
                             <div className="mr-3" style={{ zoom: 1.5 }}>
-                              {/* <svg
-                                className="icon-arrow"
-                                width="24px"
-                                height="24px"
-                                viewBox="0 0 24 24"
-                                version="1.1"
-                                xmlns="http://www.w3.org/2000/svg"
-                                xlink:href="http://www.w3.org/1999/xlink"
-                              >
-                                <g
-                                  stroke="none"
-                                  stroke-width="1"
-                                  fill="none"
-                                  fill-rule="evenodd"
-                                >
-                                  <polygon
-                                    points="0 0 24 0 24 24 0 24"
-                                    opacity="0"
-                                  ></polygon>
-                                  <rect
-                                    opacity="0.3"
-                                    transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000) "
-                                    x="7.5"
-                                    y="7.5"
-                                    width="2"
-                                    height="9"
-                                    rx="1"
-                                    fill="#383838"
-                                  ></rect>
-                                  <path
-                                    d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
-                                    fill="#383838"
-                                    fill-rule="nonzero"
-                                    transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "
-                                  ></path>
-                                </g>
-                              </svg> */}
                             </div>
                             <h4 className="m-0">
                               <i className="fa-solid fa-arrow-right me-3"></i>
