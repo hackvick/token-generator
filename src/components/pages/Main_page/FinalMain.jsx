@@ -28,6 +28,7 @@ export const FinalMain = () => {
                   <div className="card">
                     <div className="card-header d-flex align-items-center">
                       <div className="mr-3" style={{zoom: 1.5}}></div>
+                      <i className="fa-solid fa-arrow-right me-3"></i>
                       <h4 className="m-0">Installation</h4>
                     </div>
                     <div className="card-body">

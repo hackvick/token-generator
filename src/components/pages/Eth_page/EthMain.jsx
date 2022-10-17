@@ -260,13 +260,21 @@ const navigate = useNavigate()
           "Please confirm that you have read and understood our terms of use",
       }));
     }
-
-    if (!err.tokenNameErr && !err.tokenSymbolErr && err.agreementErr) {
+     
+    if (!err.tokenNameErr && !err.tokenSymbolErr && !err.agreementErr) {
       // do what u want to do with data
-      navigate('/generator/final')
+      // console.log("data");
+      console.log(err,"da");
+      
       // < Navigate to= "/generator/final" />
       console.log(ethFormData, ">>>>>>>>>>>>>>>>");
+      // navigate("/generator/final")
     }
+    if(ethFormData.tokenName !== "" &&ethFormData.tokenSymbol !== "" &&  ethFormData.agreement!==false ){
+            navigate("/generator/final")
+      
+    }
+    
   };
 
   return (
@@ -730,10 +738,16 @@ const navigate = useNavigate()
                               </div>
                             </div>
                             <div className="transactionWrap">
-                              <div className="Ttext">
+                              <div className="Ttext ">
                                 <p>
                                   Gas fee:{" "}
+                                  <div className="hoverme">
                                   <i className="fa-solid fa-circle-info"></i>
+                                  <div class="pop">               
+                                      <p class="text">
+                                        Lorem Ipsum</p>
+                                      </div> 
+                                  </div>
                                 </p>
                               </div>
                               <div className="Tbtn">
